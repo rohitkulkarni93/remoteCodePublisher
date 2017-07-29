@@ -1,0 +1,7 @@
+﻿  MsgServer.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\help code\commprototype\msgserver\msgserver.cpp(346): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\help code\commprototype\msgserver\msgserver.cpp(355): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\help code\commprototype\msgserver\msgserver.cpp(360): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\help code\commprototype\msgserver\msgserver.cpp(388): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+  MsgServer.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\Help Code\CommPrototype\x64\Debug\MsgServer.exe
+  MsgServer.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\Help Code\CommPrototype\x64\Debug\MsgServer.pdb (Full PDB)

@@ -1,0 +1,7 @@
+﻿  HTMLGenerator.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\dependency analyzer\dependencyanalyzersolution\codepublisher\htmlgenerator.cpp(129): warning C4018: '<': signed/unsigned mismatch
+  CodePublisherExecutive.cpp
+  CodePublisher.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\dependency analyzer\dependencyanalyzersolution\codepublisher\codepublisher.cpp(92): warning C4101: 'c': unreferenced local variable
+  Generating Code...
+  CodePublisher.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\CodePublisher.lib

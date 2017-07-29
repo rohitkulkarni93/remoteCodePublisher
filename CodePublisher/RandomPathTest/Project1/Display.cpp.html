@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="javascript.js"></script>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+<div id="dependencies">
+<h3>
+Dependencies</h3>
+</div>
+<pre>
+//////////////////////////////////////////////////////////////////////
+//  DepAnalysisEngine.cpp - Dependency Analyzer engine				//
+//  ver 1.0															//
+//																	//
+//  Lanaguage:     Visual C++										//
+//  Platform:      Lenovo Z580, Windows 10 Pro						//
+//  Application:   Dependency analyzer, OOD Project 2				//
+//  Author:        Rohit Kulkarni, Syracuse University				//
+//                 rvkulkar@syr.edu									//
+//////////////////////////////////////////////////////////////////////
+
+
+#include "Display.h"
+#include &ltiostream&gt
+
+using namespace std;
+
+void Display::displayAnalysisResult(unordered_map&ltstring, vector&ltstring&gt&gt dependencies)
+</pre><button class="button-expcol" onclick="showHideSection('span0')">{</button><div id="span0" style = "display: inline"><pre>
+	cout &lt&lt "---------------------------------------------------------------------\n";
+	cout &lt&lt "File" &lt&lt "\t\tDependencies" &lt&lt endl &lt&lt endl;
+	// &lt&lt type defined in file and used in dependent files.
+	for (auto iter = dependencies.begin(); iter != dependencies.end(); ++iter)
+	</pre><button class="button-expcol" onclick="showHideSection('span1')">{</button><div id="span1" style = "display: inline"><pre>
+		cout &lt&lt iter-&gtfirst &lt&lt "\t\t" &lt&lt iter-&gtsecond.front() &lt&lt endl;
+		for (auto vecIter = iter-&gtsecond.begin() + 1; vecIter != iter-&gtsecond.end(); ++vecIter)
+			cout &lt&lt "\t\t\t" &lt&lt *vecIter &lt&lt endl;
+		cout &lt&lt "-----------------------------------------\n";
+	</pre></div><pre>}
+
+</pre></div><pre>}</pre>
+<hr>
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\randompathtest\project1\project2\source.cpp(15): warning C4101: 'q': unreferenced local variable
+  Project2.vcxproj -> C:\RandomPathTest\Project1\Debug\Project2.exe
+  Project2.vcxproj -> C:\RandomPathTest\Project1\Debug\Project2.pdb (Partial PDB)

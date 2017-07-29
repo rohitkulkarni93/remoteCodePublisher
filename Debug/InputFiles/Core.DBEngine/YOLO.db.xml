@@ -1,0 +1,61 @@
+
+  <xmldatabase>
+    <metadata>
+      <dbname>
+        YOLO
+      </dbname>
+      <autocommit>
+        2
+      </autocommit>
+    </metadata>
+    <records>
+      <record>
+        <objectId>
+          iPhone
+        </objectId>
+        <item>
+          iPhone
+        </item>
+        <category>
+          SmartPhones
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          The iPhone 7 Plus
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            iPhone
+          </datastr>
+        </value>
+      </record>
+      <record>
+        <objectId>
+          iPaddd
+        </objectId>
+        <item>
+          IPHONE 7S
+        </item>
+        <category>
+          SMARTPHONES
+        </category>
+        <time>
+          10:20
+        </time>
+        <description>
+          Legendary iPhone.
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            Oops
+          </datastr>
+        </value>
+      </record>
+    </records>
+  </xmldatabase>

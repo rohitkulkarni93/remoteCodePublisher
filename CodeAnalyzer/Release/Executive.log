@@ -1,0 +1,29 @@
+﻿  AbstrSynTree.cpp
+  FileMgr.cpp
+  FileSystem.cpp
+  GrammarHelpers.cpp
+  Logger.cpp
+  ActionsAndRules.cpp
+  ConfigureParser.cpp
+  Parser.cpp
+  ScopeStack.cpp
+  SemiExp.cpp
+  Tokenizer.cpp
+  Utilities.cpp
+  DepAnal.cpp
+  DepAnalysisEngine.cpp
+  Executive.cpp
+  TypeTable.cpp
+DepAnalysisEngine.obj : error LNK2001: unresolved external symbol "class std::shared_ptr<class XmlProcessing::AbstractXmlElement> __cdecl XmlProcessing::makeTaggedElement(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?makeTaggedElement@XmlProcessing@@YA?AV?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@std@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@@Z)
+DepAnalysisEngine.obj : error LNK2001: unresolved external symbol "class std::shared_ptr<class XmlProcessing::AbstractXmlElement> __cdecl XmlProcessing::makeTextElement(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?makeTextElement@XmlProcessing@@YA?AV?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@std@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall XmlProcessing::XmlDocument::toString(void)" (?toString@XmlDocument@XmlProcessing@@QAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: class std::vector<class std::shared_ptr<class XmlProcessing::AbstractXmlElement>,class std::allocator<class std::shared_ptr<class XmlProcessing::AbstractXmlElement> > > __thiscall XmlProcessing::XmlDocument::select(void)" (?select@XmlDocument@XmlProcessing@@QAE?AV?$vector@V?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@std@@V?$allocator@V?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@std@@@2@@std@@XZ)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: class XmlProcessing::XmlDocument & __thiscall XmlProcessing::XmlDocument::element(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?element@XmlDocument@XmlProcessing@@QAEAAV12@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: __thiscall XmlProcessing::XmlDocument::XmlDocument(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,enum XmlProcessing::XmlDocument::sourceType)" (??0XmlDocument@XmlProcessing@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4sourceType@01@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall ConsoleFormatter::showRecord(class IRecordFormatter &,enum SelectObjectType,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?showRecord@ConsoleFormatter@@UAEXAAVIRecordFormatter@@W4SelectObjectType@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall ConsoleFormatter::showMessage(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?showMessage@ConsoleFormatter@@UAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall ConsoleFormatter::showException(enum OperationOutcome,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?showException@ConsoleFormatter@@UAEXW4OperationOutcome@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Record<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >::formatRecord(enum SelectObjectType,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?formatRecord@?$Record@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4SelectObjectType@@V23@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Record<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >::convertXMLToData(class std::shared_ptr<class XmlProcessing::AbstractXmlElement>)" (?convertXMLToData@?$Record@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@3@@Z)
+TypeTable.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Record<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >::convertDataToXML(class std::shared_ptr<class XmlProcessing::AbstractXmlElement> &)" (?convertDataToXML@?$Record@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAEXAAV?$shared_ptr@VAbstractXmlElement@XmlProcessing@@@std@@@Z)
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Release\CodeAnalyzer.exe : fatal error LNK1120: 12 unresolved externals

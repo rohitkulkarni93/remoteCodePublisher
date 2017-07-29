@@ -1,0 +1,61 @@
+
+  <xmldatabase>
+    <metadata>
+      <dbname>
+        Students
+      </dbname>
+      <autocommit>
+        4
+      </autocommit>
+    </metadata>
+    <records>
+      <record>
+        <objectId>
+          asfd
+        </objectId>
+        <item>
+          HEHE
+        </item>
+        <category>
+          YOLO
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          Some random description
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            asfd
+          </datastr>
+        </value>
+      </record>
+      <record>
+        <objectId>
+          123w
+        </objectId>
+        <item>
+          HEHE
+        </item>
+        <category>
+          YOLO
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          Some random description
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            123w
+          </datastr>
+        </value>
+      </record>
+    </records>
+  </xmldatabase>

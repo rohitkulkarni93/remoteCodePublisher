@@ -1,0 +1,85 @@
+
+  <xmldatabase>
+    <metadata>
+      <dbname>
+        Employee
+      </dbname>
+      <autocommit>
+        -858993460
+      </autocommit>
+    </metadata>
+    <records>
+      <record>
+        <objectId>
+          asfd
+        </objectId>
+        <item>
+          HEHE
+        </item>
+        <category>
+          YOLO
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          Some random description
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            asfd
+          </datastr>
+        </value>
+      </record>
+      <record>
+        <objectId>
+          123w
+        </objectId>
+        <item>
+          HEHE
+        </item>
+        <category>
+          YOLO
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          Some random description
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            123w
+          </datastr>
+        </value>
+      </record>
+      <record>
+        <objectId>
+          iPhone
+        </objectId>
+        <item>
+          iPhone
+        </item>
+        <category>
+          Phones
+        </category>
+        <time>
+          
+        </time>
+        <description>
+          The iPhone 7 Plus
+        </description>
+        <keys>
+        </keys>
+        <value>
+          <datastr>
+            iPhone
+          </datastr>
+        </value>
+      </record>
+    </records>
+  </xmldatabase>

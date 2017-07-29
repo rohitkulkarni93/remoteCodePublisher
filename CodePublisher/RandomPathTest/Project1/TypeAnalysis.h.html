@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="javascript.js"></script>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+<div id="dependencies">
+<h3>
+Dependencies</h3>
+</div>
+<pre>
+#pragma once
+//////////////////////////////////////////////////////////////////////
+//  TypeAnalysis.h - Builds the type table							//
+//  ver 1.0															//
+//																	//
+//  Lanaguage:     Visual C++										//
+//  Platform:      Lenovo Z580, Windows 10 Pro						//
+//  Application:   Dependency analyzer, OOD Project 2				//
+//	Source:		   Dr. Jim Fawcett, Syracuse University				//
+//  Author:        Rohit Kulkarni, Syracuse University				//
+//                 rvkulkar@syr.edu									//
+//////////////////////////////////////////////////////////////////////
+/*
+Module Operations:
+------------------
+This package is used to build the type table. The type table consists
+of all the types in the files required for dependency analysis.
+It uses the TypeTable to store the type information which it extracts
+	
+Required files:
+---------------
+TypeAnalysis.h
+
+Maintenance History:
+====================
+ver 1.0 
+	First release.
+*/
+
+#include "DepAnalysisEngine.h"
+#include "../Parser/ActionsAndRules.h"
+#include &ltiostream&gt
+#include &ltfunctional&gt
+#include "../Core.DBEngine/NoSQLDB.h"
+#include "../Core.Datastructures/DatabaseStructure.h"
+#include &ltstring&gt
+#include "../Utilities/Utilities.h"
+#include "../Tokenizer/Tokenizer.h"
+#include "../FileSystem/FileSystem.h"
+#include "../Core.DBEngine/IQueryChainer.h"
+#include "TypeTable.h"
+#include &ltalgorithm&gt
+#include "../AbstractSyntaxTree/AbstrSynTree.h"
+
+#pragma warning (disable : 4101)  // disable warning re unused variable x, below
+
+using Helper = Utilities::StringHelper;
+using namespace std;
+
+namespace CodeAnalysis
+</pre><button class="button-expcol" onclick="showHideSection('span0')">{</button><div id="span0" style = "display: inline"><pre>
+	class TypeAnal
+	</pre><button class="button-expcol" onclick="showHideSection('span1')">{</button><div id="span1" style = "display: inline"><pre>
+	public:
+		using SPtr = std::shared_ptr&ltASTNode*&gt;
+
+		TypeAnal();
+		void doTypeAnal(string path);
+		TypeTable exportTypeTable() const;
+	private:
+		void DFS(ASTNode* pNode);
+		void processNode(ASTNode *);
+		bool processUsingDecl(DeclarationNode node, string & value);
+		string getFullyQualifiedName(string token, string type);
+		void addToTypeTable(string typeName, string typeInfo, string package, string path, string FQN);
+		void captureContext(ASTNode * node, bool capture);
+
+		AbstrSynTree& ASTref_;
+		ScopeStack&ltASTNode*&gt scopeStack_;
+		Scanner::Toker& toker_;
+
+		TypeTable * table;
+		stack&ltASTNode *&gt * contextStack = new stack&ltASTNode *&gt();
+		int counter = 0;
+		string path = "";
+	</pre></div><pre>};
+
+	inline TypeAnal::TypeAnal() :
+		ASTref_(Repository::getInstance()-&gtAST()),
+		scopeStack_(Repository::getInstance()-&gtscopeStack()),
+		toker_(*(Repository::getInstance()-&gtToker()))
+	</pre><button class="button-expcol" onclick="showHideSection('span2')">{</button><div id="span2" style = "display: inline"><pre>
+		table = new TypeTable();
+		std::function&ltvoid()&gt test = [] </pre><button class="button-expcol" onclick="showHideSection('span3')">{</button><div id="span3" style = "display: inline"><pre> int x; </pre></div><pre>};		// This is here to test detection of lambdas.
+	</pre></div><pre>}													// It doesn't do anything useful for dep anal.
+
+	inline TypeTable TypeAnal::exportTypeTable() const
+	</pre><button class="button-expcol" onclick="showHideSection('span4')">{</button><div id="span4" style = "display: inline"><pre>
+		return *this-&gttable;
+	</pre></div><pre>}
+
+	inline void TypeAnal::processNode(ASTNode * pNode)
+	</pre><button class="button-expcol" onclick="showHideSection('span5')">{</button><div id="span5" style = "display: inline"><pre>
+		if (pNode-&gttype_ == "class" || pNode-&gttype_ == "struct") </pre><button class="button-expcol" onclick="showHideSection('span6')">{</button><div id="span6" style = "display: inline"><pre>
+			this-&gtaddToTypeTable(pNode-&gtname_, pNode-&gttype_, pNode-&gtpackage_,
+				pNode-&gtpath_, getFullyQualifiedName(pNode-&gtname_, pNode-&gttype_));
+		</pre></div><pre>}
+		if (pNode-&gttype_ == "namespace") </pre><button class="button-expcol" onclick="showHideSection('span7')">{</button><div id="span7" style = "display: inline"><pre>
+			for (ASTNode * child : pNode-&gtchildren_) </pre><button class="button-expcol" onclick="showHideSection('span8')">{</button><div id="span8" style = "display: inline"><pre>
+				if (child-&gttype_ == "function") </pre><button class="button-expcol" onclick="showHideSection('span9')">{</button><div id="span9" style = "display: inline"><pre>
+					this-&gtaddToTypeTable(child-&gtname_, child-&gttype_, child-&gtpackage_,
+						child-&gtpath_, getFullyQualifiedName(child-&gtname_, child-&gttype_));
+				</pre></div><pre>}
+			</pre></div><pre>}
+		</pre></div><pre>}
+		if (pNode-&gtdecl_.size() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span10')">{</button><div id="span10" style = "display: inline"><pre>
+			//	using declarations.
+			for (auto iter = pNode-&gtdecl_.begin(); iter != pNode-&gtdecl_.end(); ++iter) </pre><button class="button-expcol" onclick="showHideSection('span11')">{</button><div id="span11" style = "display: inline"><pre>
+				if (iter-&gtdeclType_ == DeclType::usingDecl) </pre><button class="button-expcol" onclick="showHideSection('span12')">{</button><div id="span12" style = "display: inline"><pre>
+					string value = "";
+					bool isUsingStatement = processUsingDecl(*iter, value);
+					if (isUsingStatement) </pre><button class="button-expcol" onclick="showHideSection('span13')">{</button><div id="span13" style = "display: inline"><pre>
+						this-&gtaddToTypeTable(value, "usingDecl", iter-&gtpackage_, pNode-&gtpath_, "");
+					</pre></div><pre>}
+				</pre></div><pre>}
+			</pre></div><pre>}
+		</pre></div><pre>}
+	</pre></div><pre>}
+
+	//	Process using declarations. These are not directly added
+	//	to the AbstractSyntaxTree by the CodeAnalyzer while parsing file.
+	//	this function extracts using declarations, and adds it to the typetable.
+	inline bool TypeAnal::processUsingDecl(DeclarationNode node, string & value) </pre><button class="button-expcol" onclick="showHideSection('span14')">{</button><div id="span14" style = "display: inline"><pre>
+		vector&ltstring&gt tokenVector;
+		int tokens = node.pTc-&gtlength(), i = 0;
+		while (i != tokens) </pre><button class="button-expcol" onclick="showHideSection('span15')">{</button><div id="span15" style = "display: inline"><pre>
+			tokenVector.push_back(node.pTc-&gtoperator[](i++));
+		</pre></div><pre>}
+		if (tokenVector[0] == "using" && tokenVector[2] == "=") </pre><button class="button-expcol" onclick="showHideSection('span16')">{</button><div id="span16" style = "display: inline"><pre>
+			value = tokenVector[1];
+			return true;
+		</pre></div><pre>}
+		return false;
+	</pre></div><pre>}
+
+	//	This function returns the fully qualified name of 
+	inline string TypeAnal::getFullyQualifiedName(string token, string type) </pre><button class="button-expcol" onclick="showHideSection('span17')">{</button><div id="span17" style = "display: inline"><pre>
+		string fqn;// = "::";
+		stack&ltASTNode *&gt tempStack;
+		if (!contextStack-&gtempty()) </pre><button class="button-expcol" onclick="showHideSection('span18')">{</button><div id="span18" style = "display: inline"><pre>
+			//	Remove current context
+			if (contextStack-&gttop()-&gtname_ == token)
+			</pre><button class="button-expcol" onclick="showHideSection('span19')">{</button><div id="span19" style = "display: inline"><pre>
+				tempStack.push(contextStack-&gttop());
+				contextStack-&gtpop();
+			</pre></div><pre>}
+		</pre></div><pre>}
+		while (!contextStack-&gtempty() && contextStack-&gttop()-&gttype_ == "namespace") </pre><button class="button-expcol" onclick="showHideSection('span20')">{</button><div id="span20" style = "display: inline"><pre>
+			tempStack.push(contextStack-&gttop());
+			contextStack-&gtpop();
+		</pre></div><pre>}
+		contextStack-&gtpush(tempStack.top());
+		tempStack.pop();
+		while (!tempStack.empty()) </pre><button class="button-expcol" onclick="showHideSection('span21')">{</button><div id="span21" style = "display: inline"><pre>
+			//	Restore context stack
+			auto node = tempStack.top();
+			contextStack-&gtpush(node);
+			fqn += "::" + node-&gtname_;
+			tempStack.pop();
+		</pre></div><pre>}
+		return fqn;
+	</pre></div><pre>}
+
+	inline void TypeAnal::addToTypeTable(string typeName,
+		string typeInfo,
+		string package,
+		string path,
+		string fullyQualifiedName) </pre><button class="button-expcol" onclick="showHideSection('span22')">{</button><div id="span22" style = "display: inline"><pre>
+
+		Type typeTableEntry;
+		typeTableEntry.typeName = typeName;
+		typeTableEntry.typeInfo = typeInfo;
+		typeTableEntry.packageName = package;
+		typeTableEntry.pathName = path;
+		typeTableEntry.fullyQualifiedName = fullyQualifiedName;
+		this-&gttable-&gtaddTypeToTable(typeTableEntry);
+	</pre></div><pre>}
+
+	//	Perform DFS on the AST and process each node.
+	inline void TypeAnal::DFS(ASTNode* pNode)
+	</pre><button class="button-expcol" onclick="showHideSection('span23')">{</button><div id="span23" style = "display: inline"><pre>
+		captureContext(pNode, true);
+		static std::string path = "";
+		if (pNode-&gtpath_ != path)
+		</pre><button class="button-expcol" onclick="showHideSection('span24')">{</button><div id="span24" style = "display: inline"><pre>
+			std::cout &lt&lt "\n    -- " &lt&lt pNode-&gtpath_ &lt&lt "\\" &lt&lt pNode-&gtpackage_ &lt&lt endl;
+			path = pNode-&gtpath_;
+		</pre></div><pre>}
+		processNode(pNode);
+		for (auto pChild : pNode-&gtchildren_)
+			DFS(pChild);
+		captureContext(pNode, false);
+	</pre></div><pre>}
+
+	//	Capture and release the current scope or context.
+	inline void TypeAnal::captureContext(ASTNode * node, bool capture) </pre><button class="button-expcol" onclick="showHideSection('span25')">{</button><div id="span25" style = "display: inline"><pre>
+		if (node-&gttype_ == "namespace" || node-&gttype_ == "class" || node-&gttype_ == "struct") </pre><button class="button-expcol" onclick="showHideSection('span26')">{</button><div id="span26" style = "display: inline"><pre>
+			if (capture)
+				contextStack-&gtpush(node);
+			else if (contextStack-&gttop()-&gtname_ == node-&gtname_)
+				contextStack-&gtpop();
+		</pre></div><pre>}
+	</pre></div><pre>}
+
+	//	This function performs the type analysis.
+	inline void TypeAnal::doTypeAnal(string path)
+	</pre><button class="button-expcol" onclick="showHideSection('span27')">{</button><div id="span27" style = "display: inline"><pre>
+		if (path.length() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span28')">{</button><div id="span28" style = "display: inline"><pre>
+			this-&gtpath = path;
+		</pre></div><pre>}
+		std::cout &lt&lt "\n  starting type analysis:\n";
+		std::cout &lt&lt "\n  scanning AST and displaying important things:";
+		std::cout &lt&lt "\n -----------------------------------------------\n\n";
+		ASTNode* pRoot = ASTref_.root();
+		DFS(pRoot);
+		//	Scan files using tokenizer and create a dependency analysis table.
+		this-&gttable-&gtcommit();
+		this-&gttable-&gtprintTypeTable();
+	</pre></div><pre>}
+</pre></div><pre>}</pre>
+<hr>
+</body>
+</html>

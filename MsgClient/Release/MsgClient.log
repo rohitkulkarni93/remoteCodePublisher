@@ -1,0 +1,4 @@
+﻿  ClientWrapper.cpp
+  MsgClient.cpp
+MsgClient.cpp(109): warning C4018: '<': signed/unsigned mismatch
+  MsgClient.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\Release\MsgClient.lib

@@ -1,0 +1,6 @@
+﻿  Logger.cpp
+  Cpp11-BlockingQueue.cpp
+  Utilities.cpp
+  Generating Code...
+Cpp11-BlockingQueue.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  LoggerV2.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\LoggerV2.lib

@@ -1,0 +1,12 @@
+﻿  MsgClient.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\dependency analyzer\dependencyanalyzersolution\msgclient\msgclient.cpp(151): warning C4018: '<': signed/unsigned mismatch
+  Cpp11-BlockingQueue.cpp
+  CommandTranslator.cpp
+  Utilities.cpp
+  Sockets.cpp
+  HttpMessage.cpp
+  FileSystem.cpp
+  Generating Code...
+Cpp11-BlockingQueue.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+CommandTranslator.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  MsgClient.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\MsgClient.lib

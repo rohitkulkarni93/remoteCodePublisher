@@ -1,0 +1,16 @@
+﻿<Window x:Class="PublisherClient.ConfigureDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublisherClient"
+        mc:Ignorable="d"
+        Title="Configure Server" Height="170" Width="300">
+    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,131">
+        <Label Canvas.Left="21" Canvas.Top="18">Server URL:</Label>
+        <TextBox Name="ServerURLTextBox" Width="150" Canvas.Left="118" Canvas.Top="18"/>
+        <Label Content="Server Port:" Canvas.Top="61" Canvas.Left="21"/>
+        <TextBox Name="PortTextBox" Canvas.Left="118" Canvas.Top="61" Width="150"/>
+        <Button Name="SaveButton"  Canvas.Left="118" Canvas.Top="98" Width="70">Save</Button>
+    </Canvas>
+</Window>

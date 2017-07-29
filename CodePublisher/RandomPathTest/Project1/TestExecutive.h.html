@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="javascript.js"></script>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+<div id="dependencies">
+<h3>
+Dependencies</h3>
+</div>
+<pre>
+#pragma once
+//////////////////////////////////////////////////////////////////////
+//  TestExecutive.h - Test executive package for Dependency Analyzer//
+//  ver 1.0															//
+//																	//
+//  Lanaguage:     Visual C++										//
+//  Platform:      Lenovo Z580, Windows 10 Pro						//
+//  Application:   Dependency analyzer, OOD Project 2				//
+//  Author:        Rohit Kulkarni, Syracuse University				//
+//                 rvkulkar@syr.edu									//
+//////////////////////////////////////////////////////////////////////
+/*
+Module Operations:
+------------------
+This package is aimed at demonstrating all requirements for the dependency
+analyzer project.
+
+Required files:
+---------------
+TestExecutive.h
+
+Maintenance History:
+====================
+ver 1.0
+First release.
+*/
+
+#include &ltiostream&gt
+using namespace std;
+
+class TestExecutive
+</pre><button class="button-expcol" onclick="showHideSection('span0')">{</button><div id="span0" style = "display: inline"><pre>
+public:
+
+	void demoAllReqs() </pre><button class="button-expcol" onclick="showHideSection('span1')">{</button><div id="span1" style = "display: inline"><pre>
+		information();
+		demoReq1();
+		demoReq2();
+		demoReq3();
+		demoReq4();
+		demoReq5();
+		demoReq6();
+		demoReq7();
+		demoReq8();
+		demoReq9();
+	</pre></div><pre>}
+
+private:
+	void req(int i) </pre><button class="button-expcol" onclick="showHideSection('span2')">{</button><div id="span2" style = "display: inline"><pre>
+		cout &lt&lt endl &lt&lt "REQUIREMENT " &lt&lt i;
+		cout &lt&lt endl &lt&lt "------------------------------------------------------------";
+		cout &lt&lt endl;
+	</pre></div><pre>}
+
+	void information() </pre><button class="button-expcol" onclick="showHideSection('span3')">{</button><div id="span3" style = "display: inline"><pre>
+		cout &lt&lt "Rohit Vidyadhar Kulkarni" &lt&lt endl;
+		cout &lt&lt "SUID - 618809126"&lt&lt endl &lt&lt endl;
+		cout &lt&lt "Project #2 - Type-based Dependency Analysis" &lt&lt endl;
+		cout &lt&lt "Object oriented design class CSE 687" &lt&lt endl;
+		cout &lt&lt endl &lt&lt "------------------------------------------------------------";
+	</pre></div><pre>}
+
+	void demoReq1() </pre><button class="button-expcol" onclick="showHideSection('span4')">{</button><div id="span4" style = "display: inline"><pre>
+		req(1);
+		cout	&lt&lt	"This project has been developed using Visual Studio 2015 \n"
+				&lt&lt	"and its C++ Windows Console Projects"
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq2() </pre><button class="button-expcol" onclick="showHideSection('span5')">{</button><div id="span5" style = "display: inline"><pre>
+		req(2);
+		cout	&lt&lt	"The C++ standard library's streams are used for all I/O and \n"
+				&lt&lt	"new and delete for all heap-based memory management."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq3() </pre><button class="button-expcol" onclick="showHideSection('span6')">{</button><div id="span6" style = "display: inline"><pre>
+		req(3);
+		cout	&lt&lt	"C++ packages as described in the Purpose section. \n"
+				&lt&lt	"Following packages are provided\n"
+				&lt&lt	" 1) TypeTable\n"
+				&lt&lt "  2) TypeAnalysis\n"
+				&lt&lt "  3) DependencyAnalysis\n"
+				&lt&lt "  4) NoSQLDB\n"
+				&lt&lt "  5) Formatter\n (Does the purpose of display)"
+				&lt&lt "  6) Test Executive\n"
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq4() </pre><button class="button-expcol" onclick="showHideSection('span7')">{</button><div id="span7" style = "display: inline"><pre>
+		req(4);
+		cout	&lt&lt	"Type analysis package is provided which performs type analysis."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq5() </pre><button class="button-expcol" onclick="showHideSection('span8')">{</button><div id="span8" style = "display: inline"><pre>
+		req(5);
+		cout	&lt&lt	"Dependency analysis package is provided which performs dependency \n"
+				&lt&lt	"analysis on the files using the type table."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq6() </pre><button class="button-expcol" onclick="showHideSection('span9')">{</button><div id="span9" style = "display: inline"><pre>
+		req(6);
+		cout	&lt&lt	"This req has not been implemented."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq7() </pre><button class="button-expcol" onclick="showHideSection('span10')">{</button><div id="span10" style = "display: inline"><pre>
+		req(7);
+		cout	&lt&lt	"The dependency analysis results is written in XML format, to a specified.\n"
+				&lt&lt	"The type table is also saved to a XML file."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq8() </pre><button class="button-expcol" onclick="showHideSection('span11')">{</button><div id="span11" style = "display: inline"><pre>
+		req(8);
+		cout	&lt&lt	"For this requirement, the first 2 points are already covered by professors code.\n"
+				&lt&lt	"For the third point, i.e. xml file specification, a new command line argument is added.\n"
+				&lt&lt	"	/s [FILENAME] : this is to specify the file to save the result to.\n"
+				&lt&lt	"If no file is specified, data is exported to Export.xml by default."
+				&lt&lt	endl;
+	</pre></div><pre>}
+	void demoReq9() </pre><button class="button-expcol" onclick="showHideSection('span12')">{</button><div id="span12" style = "display: inline"><pre>
+		req(9);
+		cout	&lt&lt	"This test suite executes all the requirements have been demonstrated"
+				&lt&lt endl;
+	</pre></div><pre>}
+</pre></div><pre>};</pre>
+<hr>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="javascript.js"></script>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+<div id="dependencies">
+<h3>
+Dependencies</h3>
+</div>
+<pre>
+//////////////////////////////////////////////////////////////////////
+//  TypeTable.cpp - Type table package								//
+//  ver 1.0															//
+//																	//
+//  Lanaguage:     Visual C++										//
+//  Platform:      Lenovo Z580, Windows 10 Pro						//
+//  Application:   Dependency analyzer, OOD Project 2				//
+//  Author:        Rohit Kulkarni, Syracuse University				//
+//                 rvkulkar@syr.edu									//
+//////////////////////////////////////////////////////////////////////
+
+
+#include "TypeTable.h"
+#include "../Core.DBEngine/IQueryChainer.h"
+#include "../Convert/Convert.h"
+
+TypeTable::TypeTable() </pre><button class="button-expcol" onclick="showHideSection('span0')">{</button><div id="span0" style = "display: inline"><pre>
+	this-&gttypeTableInfo = new DatabaseInfo();
+	this-&gttypeTableInfo-&gtAutoCommit = -1;
+	this-&gttypeTableInfo-&gtDatabaseName = "TypeTable";
+	this-&gttypeTable = new NoSQLDB&ltstring&gt(*this-&gttypeTableInfo);
+</pre></div><pre>}
+
+//	Free memory and make pointers null.
+TypeTable::~TypeTable() </pre><button class="button-expcol" onclick="showHideSection('span1')">{</button><div id="span1" style = "display: inline"><pre>
+	this-&gttypeTableInfo= nullptr;
+	this-&gttypeTable = nullptr;
+</pre></div><pre>}
+
+//	Add to type table
+void TypeTable::addTypeToTable(Type type)
+</pre><button class="button-expcol" onclick="showHideSection('span2')">{</button><div id="span2" style = "display: inline"><pre>
+	string ctr = Convert&ltint&gt::toString(counter++);
+	Record&ltstring&gt record;
+	record.setCategory(type.typeInfo.c_str());
+	record.setData(type.typeName.c_str());
+	record.setItem(type.pathName.c_str());
+	record.setDescription(type.packageName.c_str());
+	record.setTime(type.fullyQualifiedName.c_str());
+	this-&gttypeTable-&gtaddRecord(ctr, record);
+</pre></div><pre>}
+
+//	Save the typetable to file. Use nosql commit functionality to achieve this.
+void TypeTable::commit() </pre><button class="button-expcol" onclick="showHideSection('span3')">{</button><div id="span3" style = "display: inline"><pre>
+	this-&gttypeTable-&gtcommit();
+</pre></div><pre>}
+
+//	Look up token and namespace.
+list&ltType&gt TypeTable::lookup(string token, string namespaceLike = "")
+</pre><button class="button-expcol" onclick="showHideSection('span4')">{</button><div id="span4" style = "display: inline"><pre>
+	list&ltType&gt typeList;
+	bool scanToken = true;
+	if (token.length() &lt 5) </pre><button class="button-expcol" onclick="showHideSection('span5')">{</button><div id="span5" style = "display: inline"><pre>
+		for (int i = 0, len = token.length(); i &lt 5, len &gt 0; i++, len--) </pre><button class="button-expcol" onclick="showHideSection('span6')">{</button><div id="span6" style = "display: inline"><pre>
+			if (!((token[i] &gt 64 && token[i] &lt 91 )|| (token[i] &gt 96 && token[i] &lt 123) || (token[i] &gt 47 && token[i] &lt 58 ))) </pre><button class="button-expcol" onclick="showHideSection('span7')">{</button><div id="span7" style = "display: inline"><pre>
+				scanToken = false;
+				break;
+			</pre></div><pre>}
+		</pre></div><pre>}
+	</pre></div><pre>}
+	if (!scanToken)
+		return typeList;
+	
+	vector&ltstring&gt vec;
+	vec.push_back(token);
+	IQueryChainer *query = typeTable-&gtselect(SelKey, WherePredicate::WhereValue, MatchType::ExactMatch, vec, nullptr);
+	if (namespaceLike != "")
+	</pre><button class="button-expcol" onclick="showHideSection('span8')">{</button><div id="span8" style = "display: inline"><pre>
+		vec.pop_back();
+		vec.push_back(namespaceLike);
+		query = typeTable-&gtselect(SelKey, WherePredicate::WhereTime, MatchType::PartialMatch, vec, query-&gtchainIntersection());
+		//	Perform intersection of query with namespace is used.
+	</pre></div><pre>}
+	//	get records.
+	list&ltRecord&ltstring&gt&gt records = typeTable-&gtgetRecords(*query);
+	
+	if (records.size() &gt 0)
+	</pre><button class="button-expcol" onclick="showHideSection('span9')">{</button><div id="span9" style = "display: inline"><pre>
+		for (auto rec : records) </pre><button class="button-expcol" onclick="showHideSection('span10')">{</button><div id="span10" style = "display: inline"><pre>
+			Type type;
+			type.typeInfo = rec.getCategory();
+			type.typeName = rec.getData();
+			type.pathName = rec.getItem();
+			type.packageName = rec.getDescription();
+			type.fullyQualifiedName = rec.getTime();
+			typeList.push_back(type); 
+		</pre></div><pre>}
+	</pre></div><pre>}
+	if (typeList.size() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span11')">{</button><div id="span11" style = "display: inline"><pre>
+		cout &lt&lt "";
+	</pre></div><pre>}
+	return typeList;
+</pre></div><pre>}
+
+//	Print the typetable.
+void TypeTable::printTypeTable()
+</pre><button class="button-expcol" onclick="showHideSection('span12')">{</button><div id="span12" style = "display: inline"><pre>
+	cout &lt&lt "\n\nPrinting Type table:" &lt&ltendl;
+	auto query = this-&gttypeTable-&gtselect(
+		SelectObjectType::SelObject, 
+		WherePredicate::WhereDefault, 
+		MatchType::ExactMatch, 
+		vector&ltstring&gt());
+	typeTable-&gtdisplayResult(*query, SelValue);
+	cout &lt&lt endl &lt&lt endl;
+
+</pre></div><pre>}</pre>
+<hr>
+</body>
+</html>

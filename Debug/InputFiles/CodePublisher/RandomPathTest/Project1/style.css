@@ -1,0 +1,11 @@
+#dependencies {  background-color: cyan}
+.button-expcol {
+   padding: 0 0 0px;
+margin: 0 0 0px;
+border: 0px;
+background-color: inherit;
+cursor: pointer;
+}
+pre { display:inline;
+ margin: 0 0 0px;
+ padding: 0 0 0px; }

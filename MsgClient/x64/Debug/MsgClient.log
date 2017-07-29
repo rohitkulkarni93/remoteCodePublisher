@@ -1,0 +1,17 @@
+﻿  MsgClient.cpp
+  Cpp11-BlockingQueue.cpp
+  CommandTranslator.cpp
+  Utilities.cpp
+  Sockets.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(160): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(179): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(198): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(239): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(247): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rohit\studies\object oriented design\projects\source control\remoteclient\remoteclient\sockets\sockets.cpp(266): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  HttpMessage.cpp
+  FileSystem.cpp
+  Generating Code...
+Cpp11-BlockingQueue.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+CommandTranslator.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  MsgClient.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\x64\Debug\MsgClient.lib

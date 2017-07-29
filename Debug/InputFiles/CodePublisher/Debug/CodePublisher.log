@@ -1,0 +1,3 @@
+﻿  CodePublisher.cpp
+c:\users\rohit\studies\object oriented design\projects\source control\dependency analyzer\dependencyanalyzersolution\codepublisher\codepublisher.cpp(95): warning C4101: 'c': unreferenced local variable
+  CodePublisher.vcxproj -> C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\CodePublisher.lib

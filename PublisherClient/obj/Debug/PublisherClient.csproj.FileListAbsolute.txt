@@ -1,0 +1,47 @@
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\bin\Debug\PublisherClient.exe.config
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\bin\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\bin\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\bin\Debug\CLIShim.dll
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\bin\Debug\CLIShim.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\Debug\PublisherClient.exe.config
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\x64\Debug\PublisherClient.exe.config
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\x64\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\x64\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.csprojResolveAssemblyReference.cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\Configure.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\HelpWindow.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\MainWindow.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\App.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient_MarkupCompile.cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient_MarkupCompile.lref
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\Configure.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\HelpWindow.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\MainWindow.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.g.resources
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.Properties.Resources.resources
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.csproj.GenerateResource.Cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\RemoteClient\RemoteClient\PublisherClient\obj\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\Configure.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\HelpWindow.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\MainWindow.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\App.g.cs
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient_MarkupCompile.cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient_MarkupCompile.lref
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\PublisherClient.exe.config
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\Debug\PublisherClient.pdb
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\Configure.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\HelpWindow.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\MainWindow.baml
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.g.resources
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.Properties.Resources.resources
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.csproj.GenerateResource.Cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Dependency Analyzer\DependencyAnalyzerSolution\PublisherClient\obj\Debug\PublisherClient.csprojResolveAssemblyReference.cache
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Code Publisher\CodePublisherSolution\Debug\PublisherClient.exe.config
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Code Publisher\CodePublisherSolution\PublisherClient\obj\Debug\PublisherClient.exe
+C:\Users\Rohit\Studies\Object Oriented Design\Projects\Source Control\Code Publisher\CodePublisherSolution\PublisherClient\obj\Debug\PublisherClient.pdb

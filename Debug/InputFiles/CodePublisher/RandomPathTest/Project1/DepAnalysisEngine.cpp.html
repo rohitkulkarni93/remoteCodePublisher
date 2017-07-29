@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="javascript.js"></script>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+<div id="dependencies">
+<h3>
+Dependencies</h3>
+</div>
+<pre>
+//////////////////////////////////////////////////////////////////////
+//  DepAnalysisEngine.cpp - Dependency Analyzer engine				//
+//  ver 1.0															//
+//																	//
+//  Lanaguage:     Visual C++										//
+//  Platform:      Lenovo Z580, Windows 10 Pro						//
+//  Application:   Dependency analyzer, OOD Project 2				//
+//  Author:        Rohit Kulkarni, Syracuse University				//
+//                 rvkulkar@syr.edu									//
+//////////////////////////////////////////////////////////////////////
+
+
+#include &ltqueue&gt
+#include &ltstring&gt
+#include &ltvector&gt
+#include &ltalgorithm&gt
+#include "../FileSystem/FileSystem.h"
+#include "TypeTable.h"
+#include "./DepAnalysisEngine.h"
+#include &ltfstream&gt
+#include "../Core.Datastructures/StrHelper.h"
+
+using namespace std;
+
+void DependencyAnalysisEngine::startDependencyAnalysis(const char * path)
+</pre><button class="button-expcol" onclick="showHideSection('span0')">{</button><div id="span0" style = "display: inline"><pre>
+	cout &lt&lt "Starting dependency analysis: " &lt&lt path &lt&lt endl;
+	cout &lt&lt "---------------------------------------------------------------------" &lt&lt endl;
+	if (!path|| !FileSystem::Directory::exists(path))
+		return;
+	
+	processDirectory(path);
+	cout &lt&lt "Depencency Analysis complete..." &lt&lt endl;
+</pre></div><pre>}
+
+void DependencyAnalysisEngine::exportAnalysisResultToFile(string exportFileName, string path)
+</pre><button class="button-expcol" onclick="showHideSection('span1')">{</button><div id="span1" style = "display: inline"><pre>
+	using SPtr = shared_ptr&ltAbstractXmlElement&gt;
+	if (this-&gtdependencies-&gtsize() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span2')">{</button><div id="span2" style = "display: inline"><pre>
+
+		XmlProcessing::XmlDocument document;
+		exportFileName = exportFileName == "" ? "Export.xml" : exportFileName;
+		exportFileName = "./" + exportFileName;
+
+		SPtr pRoot = makeTaggedElement("DependencyAnalysis");
+		document.docElement() = pRoot;
+
+		for (auto iter = dependencies-&gtbegin(); iter != dependencies-&gtend(); ++iter) </pre><button class="button-expcol" onclick="showHideSection('span3')">{</button><div id="span3" style = "display: inline"><pre>
+
+			SPtr dependencyTag = makeTaggedElement("Dep");
+			SPtr depFileTag = makeTaggedElement("File");
+			SPtr depFileText = makeTextElement(iter-&gtfirst);
+			SPtr indepFiles = makeTaggedElement("DependsOn");
+
+			pRoot-&gtaddChild(dependencyTag);
+			dependencyTag-&gtaddChild(depFileTag);
+			depFileTag-&gtaddChild(depFileText);
+			dependencyTag-&gtaddChild(indepFiles);
+
+			for (auto str : iter-&gtsecond) </pre><button class="button-expcol" onclick="showHideSection('span4')">{</button><div id="span4" style = "display: inline"><pre>
+
+				SPtr indepFileTag = makeTaggedElement("File");
+				SPtr indepFileText = makeTextElement(str);
+				indepFileTag-&gtaddChild(indepFileText);
+				indepFiles-&gtaddChild(indepFileTag);
+			</pre></div><pre>}
+		</pre></div><pre>}
+		
+		FileSystem::Directory::setCurrentDirectory(path);
+		ofstream out(exportFileName, fstream::out | fstream::trunc);
+		out &lt&lt document.docElement()-&gttoString();
+		out.flush();
+		out.close();
+	</pre></div><pre>}
+</pre></div><pre>}
+
+unordered_map&ltstring, vector&ltstring&gt&gt DependencyAnalysisEngine::readAnalysisResultFromFile(string fileName)
+</pre><button class="button-expcol" onclick="showHideSection('span5')">{</button><div id="span5" style = "display: inline"><pre>
+	using SPtr = shared_ptr&ltAbstractXmlElement&gt;
+	unordered_map&ltstring, vector&ltstring&gt&gt dependencies;
+	if (FileSystem::File::exists(fileName))
+	</pre><button class="button-expcol" onclick="showHideSection('span6')">{</button><div id="span6" style = "display: inline"><pre>
+		XmlDocument doc(fileName, XmlDocument::file);
+		std::vector&ltSPtr&gt desc = doc.element("DependencyAnalysis").select();
+		for (auto dependency : desc[0]-&gtchildren()) </pre><button class="button-expcol" onclick="showHideSection('span7')">{</button><div id="span7" style = "display: inline"><pre>
+			string fileName = trim(dependency-&gtchildren()[0]-&gtchildren()[0]-&gtvalue());
+			vector&ltstring&gt deps;
+			for (auto depFile : dependency-&gtchildren()[1]-&gtchildren())
+				deps.push_back(trim(depFile-&gtchildren()[0]-&gtvalue()));
+			dependencies[fileName] = deps;
+		</pre></div><pre>}
+	</pre></div><pre>}
+	return dependencies;
+</pre></div><pre>}
+
+void DependencyAnalysisEngine::processDirectory(string path)
+</pre><button class="button-expcol" onclick="showHideSection('span8')">{</button><div id="span8" style = "display: inline"><pre>
+	using namespace std;
+	try </pre><button class="button-expcol" onclick="showHideSection('span9')">{</button><div id="span9" style = "display: inline"><pre>
+		FileSystem::Directory::setCurrentDirectory(path);
+		processFiles(FileSystem::Directory::getFiles(".", "*.h"));
+		processFiles(FileSystem::Directory::getFiles(".", "*.cpp"));
+		auto directories = FileSystem::Directory::getDirectories();
+		for each (string dir in directories)
+		</pre><button class="button-expcol" onclick="showHideSection('span10')">{</button><div id="span10" style = "display: inline"><pre>
+			if (!(dir.compare(".") == 0 || dir.compare("..") == 0))
+			</pre><button class="button-expcol" onclick="showHideSection('span11')">{</button><div id="span11" style = "display: inline"><pre>
+				processDirectory(getDirectoryName(path, dir));
+			</pre></div><pre>}
+		</pre></div><pre>}
+	</pre></div><pre>}
+	catch (std::exception ex) </pre><button class="button-expcol" onclick="showHideSection('span12')">{</button><div id="span12" style = "display: inline"><pre>
+		cout &lt&lt "Exception" &lt&lt ex.what();
+	</pre></div><pre>}
+</pre></div><pre>}
+
+string DependencyAnalysisEngine::getDirectoryName(string base, string currentDirectory)
+</pre><button class="button-expcol" onclick="showHideSection('span13')">{</button><div id="span13" style = "display: inline"><pre>
+	string dirName = "";
+	if (base.size() &gt 0 && currentDirectory.size() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span14')">{</button><div id="span14" style = "display: inline"><pre>
+		if (base[base.length() - 2] == '\\' && base[base.length() - 3] == '\\')
+			dirName = base + currentDirectory;
+		else
+			dirName = base + "\\\\" + currentDirectory;
+	</pre></div><pre>}
+	return dirName;
+</pre></div><pre>}
+
+//	ctor
+DependencyAnalysisEngine::DependencyAnalysisEngine()
+</pre><button class="button-expcol" onclick="showHideSection('span15')">{</button><div id="span15" style = "display: inline"><pre>
+	this-&gtnamespaceContext = new list&ltstring&gt;
+	this-&gtdependencies = new unordered_map&ltstring, vector&ltstring&gt&gt;
+	this-&gttypeTable = new TypeTable;
+</pre></div><pre>}
+
+DependencyAnalysisEngine::~DependencyAnalysisEngine()
+</pre><button class="button-expcol" onclick="showHideSection('span16')">{</button><div id="span16" style = "display: inline"><pre>
+	this-&gtnamespaceContext-&gtclear();
+	this-&gtnamespaceContext = nullptr;
+
+	this-&gtdependencies-&gtclear();
+	this-&gtdependencies = nullptr;
+
+	this-&gttypeTable = nullptr;
+</pre></div><pre>}
+
+//	Process each file in the directory
+void DependencyAnalysisEngine::processFiles(vector&ltstring&gt files)
+</pre><button class="button-expcol" onclick="showHideSection('span17')">{</button><div id="span17" style = "display: inline"><pre>
+	for each (string fileName in files)
+	</pre><button class="button-expcol" onclick="showHideSection('span18')">{</button><div id="span18" style = "display: inline"><pre>
+		tokenizeAndProcessFile(fileName);
+	</pre></div><pre>}
+</pre></div><pre>}
+
+//	Tokenize the file using the tokenizer.
+void DependencyAnalysisEngine::tokenizeAndProcessFile(string fileName)
+</pre><button class="button-expcol" onclick="showHideSection('span19')">{</button><div id="span19" style = "display: inline"><pre>
+	this-&gtnamespaceContext-&gtclear();	//	Clear scope for the file.
+	queue&ltstring&gt tokenQueue;
+	std::ifstream in(fileName);
+	if (!in.good()) </pre><button class="button-expcol" onclick="showHideSection('span20')">{</button><div id="span20" style = "display: inline"><pre> return; </pre></div><pre>}
+	Scanner::Toker toker;
+	toker.returnComments(false);
+	if (toker.attach(&in))
+	</pre><button class="button-expcol" onclick="showHideSection('span21')">{</button><div id="span21" style = "display: inline"><pre>
+		std::string token;
+		try </pre><button class="button-expcol" onclick="showHideSection('span22')">{</button><div id="span22" style = "display: inline"><pre>
+			do </pre><button class="button-expcol" onclick="showHideSection('span23')">{</button><div id="span23" style = "display: inline"><pre>
+				string token = toker.getTok();
+				if (token == "</pre><button class="button-expcol" onclick="showHideSection('span24')">{</button><div id="span24" style = "display: inline"><pre>" || token == ";" || token == "\n")
+				</pre><button class="button-expcol" onclick="showHideSection('span25')">{</button><div id="span25" style = "display: inline"><pre>
+					processTokens(tokenQueue, fileName);
+					while (!tokenQueue.empty())
+						tokenQueue.pop();
+				</pre></div><pre>}
+				else
+					tokenQueue.push(token);
+			</pre></div><pre>} while (in.good());
+		</pre></div><pre>}
+		catch (exception ex) </pre><button class="button-expcol" onclick="showHideSection('span26')">{</button><div id="span26" style = "display: inline"><pre> cout &lt&lt ex.what(); </pre></div><pre>}
+	</pre></div><pre>}
+</pre></div><pre>}
+
+//	Process tokens
+void DependencyAnalysisEngine::processTokens(queue&ltstd::string&gt tokenQueue, string fileName)
+</pre><button class="button-expcol" onclick="showHideSection('span27')">{</button><div id="span27" style = "display: inline"><pre>
+	if (tokenQueue.size() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span28')">{</button><div id="span28" style = "display: inline"><pre>
+		processContext(tokenQueue);
+		while (!tokenQueue.empty())
+		</pre><button class="button-expcol" onclick="showHideSection('span29')">{</button><div id="span29" style = "display: inline"><pre>
+			string token = tokenQueue.front();	//	Get the token.
+			processDependency(token, fileName);
+			tokenQueue.pop();
+		</pre></div><pre>}
+	</pre></div><pre>}
+</pre></div><pre>}
+
+//	Maintain context of namespaces.
+void DependencyAnalysisEngine::processContext(queue&ltstring&gt tokenQueue)
+</pre><button class="button-expcol" onclick="showHideSection('span30')">{</button><div id="span30" style = "display: inline"><pre>
+	//	TODO: Rewrite algorithm
+	while (!tokenQueue.empty())
+	</pre><button class="button-expcol" onclick="showHideSection('span31')">{</button><div id="span31" style = "display: inline"><pre>
+		string token = tokenQueue.front();
+		if (token == "using") </pre><button class="button-expcol" onclick="showHideSection('span32')">{</button><div id="span32" style = "display: inline"><pre>
+			tokenQueue.pop();
+			string nextTok1 = tokenQueue.front();
+			tokenQueue.pop();
+			string nextTok2 = tokenQueue.front();
+			tokenQueue.pop();
+			if (nextTok1 == "namespace" && nextTok2 != "std") </pre><button class="button-expcol" onclick="showHideSection('span33')">{</button><div id="span33" style = "display: inline"><pre>
+				while (!tokenQueue.empty()) </pre><button class="button-expcol" onclick="showHideSection('span34')">{</button><div id="span34" style = "display: inline"><pre>
+					nextTok2 += tokenQueue.front();
+					tokenQueue.pop();
+				</pre></div><pre>}
+				namespaceContext-&gtpush_back(nextTok2);
+			</pre></div><pre>}
+			else if (nextTok2 == "=") </pre><button class="button-expcol" onclick="showHideSection('span35')">{</button><div id="span35" style = "display: inline"><pre>
+				//	alias names.
+			</pre></div><pre>}
+		</pre></div><pre>}
+		if(!tokenQueue.empty())
+			tokenQueue.pop();
+	</pre></div><pre>}
+</pre></div><pre>}
+
+void DependencyAnalysisEngine::processDependency(string token, string fileName)
+</pre><button class="button-expcol" onclick="showHideSection('span36')">{</button><div id="span36" style = "display: inline"><pre>
+	list&ltType&gt matchingTypes = this-&gttypeTable-&gtlookup(token, "");	//	Check if it is a type.
+	if (matchingTypes.size() &gt 0) </pre><button class="button-expcol" onclick="showHideSection('span37')">{</button><div id="span37" style = "display: inline"><pre>
+		Type * type = nullptr;
+		Type type1;
+		if (matchingTypes.size() &gt 1) </pre><button class="button-expcol" onclick="showHideSection('span38')">{</button><div id="span38" style = "display: inline"><pre>
+			if (!namespaceContext-&gtempty()) </pre><button class="button-expcol" onclick="showHideSection('span39')">{</button><div id="span39" style = "display: inline"><pre>
+				for (auto iter = namespaceContext-&gtbegin(); iter != namespaceContext-&gtend(); ++iter) </pre><button class="button-expcol" onclick="showHideSection('span40')">{</button><div id="span40" style = "display: inline"><pre>
+					for (auto iter2 = matchingTypes.begin(); iter2 != matchingTypes.end(); ++iter2) </pre><button class="button-expcol" onclick="showHideSection('span41')">{</button><div id="span41" style = "display: inline"><pre>
+						string ns = *iter, fqn = iter2-&gtfullyQualifiedName;
+						auto found = fqn.find(ns);
+						if (found != std::string::npos) </pre><button class="button-expcol" onclick="showHideSection('span42')">{</button><div id="span42" style = "display: inline"><pre>
+							type = &*iter2;
+							break;
+						</pre></div><pre>}
+					</pre></div><pre>}
+				</pre></div><pre>}
+			</pre></div><pre>}
+			else </pre><button class="button-expcol" onclick="showHideSection('span43')">{</button><div id="span43" style = "display: inline"><pre>
+				for (auto iter2 = matchingTypes.begin(); iter2 != matchingTypes.end(); ++iter2)
+				</pre><button class="button-expcol" onclick="showHideSection('span44')">{</button><div id="span44" style = "display: inline"><pre>
+					if (fileName == iter2-&gtpackageName) </pre><button class="button-expcol" onclick="showHideSection('span45')">{</button><div id="span45" style = "display: inline"><pre>
+						type = &*iter2;
+						break;
+					</pre></div><pre>}
+				</pre></div><pre>}
+			</pre></div><pre>}
+		</pre></div><pre>}
+		else
+			type = &(matchingTypes.front());
+		if (type && type-&gttypeName != "")
+		</pre><button class="button-expcol" onclick="showHideSection('span46')">{</button><div id="span46" style = "display: inline"><pre>
+			//	if token is defined in a different file add a dependency of this
+			//	file onto that file.
+			//	File = dependent, packageName = independent
+			if (fileName != type-&gtpackageName) </pre><button class="button-expcol" onclick="showHideSection('span47')">{</button><div id="span47" style = "display: inline"><pre>
+				if (type-&gtpackageName == "") </pre><button class="button-expcol" onclick="showHideSection('span48')">{</button><div id="span48" style = "display: inline"><pre>
+					cout &lt&lt "Culprit";
+				</pre></div><pre>}
+				auto iter = dependencies-&gtfind(fileName);	//	Find the file.
+				if (iter != dependencies-&gtend()) 
+				</pre><button class="button-expcol" onclick="showHideSection('span49')">{</button><div id="span49" style = "display: inline"><pre>
+					vector&ltstring&gt vector = iter-&gtsecond;
+					if(std::find(vector.begin(), vector.end(), type-&gtpackageName) == vector.end())
+						(iter-&gtsecond).push_back(type-&gtpackageName);
+				</pre></div><pre>}
+				else </pre><button class="button-expcol" onclick="showHideSection('span50')">{</button><div id="span50" style = "display: inline"><pre> //	Added into dependency table
+					pair&ltstring, vector&ltstring&gt&gt dependency;
+					dependency.first = fileName;						//	this depends on 
+					dependency.second.push_back(type-&gtpackageName);		//	this
+					this-&gtdependencies-&gtinsert(dependency);
+				</pre></div><pre>}
+			</pre></div><pre>}
+			//	If the token is present in the file where it is declared
+			//	ignore it and move on.
+			else </pre><button class="button-expcol" onclick="showHideSection('span51')">{</button><div id="span51" style = "display: inline"><pre>
+				//cot &lt&lt "dependency on same file.";
+			</pre></div><pre>}
+		</pre></div><pre>}
+	</pre></div><pre>}
+</pre></div><pre>}
+
+void DependencyAnalysisEngine::importTypeTable(TypeTable & table)
+</pre><button class="button-expcol" onclick="showHideSection('span52')">{</button><div id="span52" style = "display: inline"><pre>
+	*this-&gttypeTable = table;
+</pre></div><pre>}
+
+unordered_map&ltstring, vector&ltstring&gt&gt DependencyAnalysisEngine::exportAnalysisResult()
+</pre><button class="button-expcol" onclick="showHideSection('span53')">{</button><div id="span53" style = "display: inline"><pre>
+	return *this-&gtdependencies;
+</pre></div><pre>}</pre>
+<hr>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿<Window x:Class="PublisherClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublisherClient"
+        mc:Ignorable="d"
+        Title="Code Publisher Client" Height="350" Width="525" ResizeMode="NoResize">
+    <DockPanel Name="mainPanel">
+        <Menu x:Name="fileMenu" DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="Configure" Header="Configure" Click="Configure_MenuItem_Click"></MenuItem>
+                <MenuItem Name="Exit" Header="Exit" Click="Exit_MenuItem_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Name="ViewHelp" Header="View Help" Click="Help_MenuItem_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StatusBar Name="statusBar1" DockPanel.Dock="Bottom" Height="22">
+            <StatusBarItem>
+                <TextBlock Name="statusLbl" Text="Status:"/>
+            </StatusBarItem>
+        </StatusBar>
+        <DockPanel Name="tabPanel" Margin="0,1,0,-1">
+            <TabControl Name="tabControl1" DockPanel.Dock="Top">
+                <TabItem Name="tabPage1">
+                    <TabItem.Header>
+                        <TextBlock Text="Transfer"></TextBlock>
+                    </TabItem.Header>
+                    <Grid ShowGridLines="True" AllowDrop="True" Drop="fileDragDropPanel_Drop">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column ="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Background="Azure">
+                            Drag and drop code files to upload.
+                        </Label>
+                        <Canvas Grid.Column ="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Label Canvas.Left="10" Canvas.Top="10">Directory:</Label>
+                            <TextBox Name ="UploadTextbox" Width="210" Canvas.Left="86" Canvas.Top="10" Height="26"/>
+                            <Label Canvas.Left="10" Canvas.Top="48">Category:</Label>
+                            <TextBox Name="CategoyTextBox" Width="210" Canvas.Left="86" Canvas.Top="48" Height="26"/>
+                            <Button Name ="UploadButton" Padding="10,0,10,0" Click="Upload_Button_Click" Canvas.Left="345" Canvas.Top="30" Height="26" Width="124">Upload</Button>
+                        </Canvas>
+                        <WrapPanel>
+
+                        </WrapPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabPage2">
+                    <TabItem.Header>
+                        <TextBlock Text="Browse"></TextBlock>
+                    </TabItem.Header>
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Bottom" Height="50">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Height="30" Margin="10,0,10,0" Click="Delete_Button_Click">Delete</Button>
+                            <Button Grid.Column="1" Height="30" Margin="10,0,10,0" Click="Download_Button_Click">Download</Button>
+                            <Button Grid.Column="2" Height="30" Margin="10,0,10,0" Click="Publish_Button_Click">Publish</Button>
+                        </Grid>
+                        <ListBox DockPanel.Dock="Top" x:Name="DirectoryList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        </ListBox>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </DockPanel>
+</Window>
